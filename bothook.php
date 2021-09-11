@@ -1,7 +1,6 @@
 <?php
-
 include_once('conf.php');
-
+include_once('functions/chiste.php');
 spl_autoload_register(function($class) {
 	include_once 'classes/' . $class . '.php';
 });
@@ -11,48 +10,6 @@ $update = json_decode($content, true);
 $chat_id = $update["message"]["chat"]["id"] ? $update["message"]["chat"]["id"] : -515516274;
 $message = $update["message"]["text"];
 
-// Available bot commands
-$commands = [
-	// General Commands
-	'help',
-
-	// Server Commands
-	'server',
-
-	//Alias for /server uptime
-	'uptime',
-	
-	// Alias for /server uname
-	'uname',
-
-	// Alias for /server who
-	'who',
-
-	// Alias for /server disk
-	'disk',
-
-];
-
-$arguments = [
-	// Server
-	'server'=>[
-		'uptime',
-		'uname',
-		'who',
-		'disk',
-	],
-	'help'=>[
-		'server',
-	],
-];
-
-// Aliases for commands
-$alias = [
-	'uptime'=>'server',
-	'uname'=>'server',
-	'who'=>'server',
-	'disk'=>'server',
-];
 
 $args = explode(' ', trim($message));
 
@@ -67,29 +24,12 @@ else {
 		$command = $alias[$command];
 	}
 }
-error_log(json_encode($args) . "\n", 3, 'log.log');
 
-
-switch ($command) {
-	case 'server':
-		$class = 'Server';
-		break;
-	case 'help':
-		$class = 'Help';
-		break;
-	default:
-		$class = 'Bot';
-}
-
-$hook = new $class($conf, $chat_id);
+$hook = new Bot($conf, $chat_id);
 
 if (!$hook->isTrusted()) {
 	$hook->unauthorized();
 	die();
-}
-if (date('H:i') == '03:40') {
-	$hook->send('aaaaa');
-
 }
 if (preg_grep('/jajaja/',$args)) {
 
@@ -99,6 +39,11 @@ if (preg_grep('/jajaja/',$args)) {
 		'E-PI-CO, que grande',
 	];
 	$hook->send($gracioso[rand(0, count($gracioso))]);
+}
+if (preg_grep('/chiste/',$args)) {
+	$hook->send('Que quieres un chiste? Alla va uno!');
+	
+	$hook->send(generateChiste());
 }
 
 // if (!in_array($command, $commands)) {
