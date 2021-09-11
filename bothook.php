@@ -1,6 +1,11 @@
 <?php
+<<<<<<< HEAD
 include_once('conf.php');
 include_once('functions/chiste.php');
+=======
+// include_once('conf.php');
+
+>>>>>>> fbc6233670e2d142d38cda32a4a76c0d2e48a163
 spl_autoload_register(function($class) {
 	include_once 'classes/' . $class . '.php';
 });
@@ -24,6 +29,21 @@ else {
 		$command = $alias[$command];
 	}
 }
+<<<<<<< HEAD
+=======
+
+
+switch ($command) {
+	case 'server':
+		$class = 'Server';
+		break;
+	case 'help':
+		$class = 'Help';
+		break;
+	default:
+		$class = 'Bot';
+}
+>>>>>>> fbc6233670e2d142d38cda32a4a76c0d2e48a163
 
 $hook = new Bot($conf, $chat_id);
 
