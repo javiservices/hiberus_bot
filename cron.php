@@ -22,6 +22,7 @@ if ($dayOfWeek >= 1 && $dayOfWeek <= 5) { // Si es entre semana
     error_log(date("Y-m-d H:i:s") . " - " . 'El numero es ' . $rand . "\n", 3, 'logs/log_cron_number.log');
 
     if ($rand > 50 && $rand < 75) {
+        sendMessage('Enga, que hoy estoy de humor, alla va un chiste.');
         sendMessage(generateChiste());
     }
 }
