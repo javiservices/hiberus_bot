@@ -1,6 +1,5 @@
 <?php
-
-include_once('conf.php');
+// include_once('conf.php');
 
 spl_autoload_register(function($class) {
 	include_once 'classes/' . $class . '.php';
@@ -67,7 +66,6 @@ else {
 		$command = $alias[$command];
 	}
 }
-error_log(json_encode($args) . "\n", 3, 'log.log');
 
 
 switch ($command) {

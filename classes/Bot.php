@@ -25,16 +25,13 @@ class Bot
 
 			return true;
 		}
-		error_log(date("Y-m-d H:i:s") . " - " . 'El chat ' . $this->chat_id . ' no puede escribir.' . "\n", 3, 'log.log');
-		error_log(date("Y-m-d H:i:s") . " - " . 'Solo pueden escribir los ' . json_encode($this->trusted)  . '.' . "\n", 3, 'log.log');
-
 
 		return false;
 	}
 
 	public function log($message)
 	{
-		error_log(date("Y-m-d H:i:s") . " - " . $message . "\n", 3, 'log.log');
+		error_log(date("Y-m-d H:i:s") . " - " . $message . "\n", 3, 'logs/log.log');
 	}
 
 	public function send($message)
