@@ -1,9 +1,7 @@
 <?php
-<<<<<<< HEAD
-file_get_contents('https://api.telegram.org/bot1973959366:AAGOQkHsugsjnSXYiOW_MW227gQDQ53rgto/sendmessage?parse_mode=html&chat_id=-562492710&text=pruebacron');
+// file_get_contents('https://api.telegram.org/bot1973959366:AAGOQkHsugsjnSXYiOW_MW227gQDQ53rgto/sendmessage?parse_mode=html&chat_id=-562492710&text=pruebacron');
+error_log(date("Y-m-d H:i:s") . " - " . 'Esta llegando cada minuto' . "\n", 3, 'logs/log_cron.log');
 
-=======
->>>>>>> fbc6233670e2d142d38cda32a4a76c0d2e48a163
 include_once 'functions/chiste.php';
 $time = date('H:i');
 $dayOfWeek = date('w'); // 0 es domingo 6 es sabado
@@ -20,8 +18,9 @@ if ($dayOfWeek >= 1 && $dayOfWeek <= 5) { // Si es entre semana
     }
 
 } else { // Si es fin de semana
-<<<<<<< HEAD
     $rand = random_int(0, 1000);
+    error_log(date("Y-m-d H:i:s") . " - " . 'El numero es ' . $rand . "\n", 3, 'logs/log_cron_number.log');
+
     if ($rand > 50 && $rand < 75) {
         sendMessage(generateChiste());
     }
@@ -30,14 +29,4 @@ if ($dayOfWeek >= 1 && $dayOfWeek <= 5) { // Si es entre semana
 function sendMessage($message) {
     $text = urlencode($message);
     file_get_contents('https://api.telegram.org/bot1973959366:AAGOQkHsugsjnSXYiOW_MW227gQDQ53rgto/sendmessage?parse_mode=html&chat_id=-562492710&text='.$text);
-=======
-    sendMessage(generateChiste());
-}
-
-function sendMessage($message) {
-    $apiUrl = "https://api.telegram.org/bot1973959366:AAGOQkHsugsjnSXYiOW_MW227gQDQ53rgto/";
-    $chatId = -562492710;
-    $text = urlencode($message);
-    file_get_contents($apiUrl."sendmessage?parse_mode=html&chat_id=" . $chatId . "&text=" . $text);
->>>>>>> fbc6233670e2d142d38cda32a4a76c0d2e48a163
 }
